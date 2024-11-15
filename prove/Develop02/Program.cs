@@ -1,10 +1,12 @@
 using System;
 
+// Was added error typing management and functionalities to clean a wait the console in each actions.
 class Program
 {
     static void Main(string[] args)
     {
         int option = 0;
+        string filename = "";
         Journal journal = new Journal();
         PromptGenerator promptGenerator = new PromptGenerator();
 
@@ -36,12 +38,14 @@ class Program
             switch (option)
             {
                 case 1:
+                    Console.Clear();
                     Entry newEntry = new Entry();
                     newEntry._date = DateTime.Now.ToShortDateString();
                     newEntry._promptText = promptGenerator.GetRandomPrompt();
                     Console.WriteLine(newEntry._promptText);
                     newEntry._entryText = Console.ReadLine();
                     journal.AddEntry(newEntry);
+                    CleanConsole();
                     break;
                 case 2:
                     Console.Clear();
@@ -49,9 +53,18 @@ class Program
                     CleanConsole();
                     break;
                 case 3:
+                    Console.Clear();
                     Console.WriteLine("What is the filename?");
-                    String filename = Console.ReadLine();
+                    filename = Console.ReadLine();
                     journal.LoadFromFile(filename);
+                    CleanConsole();
+                    break;
+                case 4:
+                    Console.Clear();
+                    Console.WriteLine("What is the filename?");
+                    filename = Console.ReadLine();
+                    journal.SaveToFile(filename);
+                    CleanConsole();
                     break;
                 case 5:
                     Console.Clear();
