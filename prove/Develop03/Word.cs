@@ -15,9 +15,21 @@ public class Word
     {
         _isHidden = false;
     }
-    public void IsHidden() { }
+    public bool IsHidden()
+    {
+        return _isHidden;
+    }
     public string GetDisplayText()
     {
+        if (_isHidden)
+        {
+            string hiddenText = "";
+            foreach (var item in _text)
+            {
+                hiddenText += "_";
+            }
+            return hiddenText;
+        }
         return _text;
     }
 }
