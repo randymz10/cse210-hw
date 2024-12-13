@@ -31,18 +31,26 @@ class Program
                         re.Run();
                         break;
                     case 3:
+                        ListingActivity la = new ListingActivity();
+                        la.Run();
                         break;
                     case 4:
                         System.Console.WriteLine("Good bye!");
                         break;
                     default:
+                        System.Console.WriteLine();
                         Console.WriteLine("Please select a valid option");
+                        System.Console.WriteLine("Press any key to continue...");
+                        Console.ReadKey();
                         break;
                 }
             }
             catch (System.Exception)
             {
+                System.Console.WriteLine();
                 Console.WriteLine("Please digit a option above");
+                System.Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
             }
         } while (option != 4);
 

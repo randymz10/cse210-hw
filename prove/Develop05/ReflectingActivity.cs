@@ -1,3 +1,5 @@
+using System.Data;
+
 class ReflectingActivity : Activity
 {
     private List<string> _prompts;
@@ -27,19 +29,80 @@ class ReflectingActivity : Activity
             "How can you keep this experience in mind in the future?"
         };
     }
-    public void Run() {
+    public void Run()
+    {
         DisplayStartingMessage();
-        
-        DisplayEndingMessage();
-     }
+        try
+        {
+            _duration = int.Parse(Console.ReadLine());
+            Console.Clear();
+            Console.WriteLine("Get ready...");
+            ShowSpiner(4);
+            Console.WriteLine();
+            DisplayPrompt();
+            System.Console.WriteLine();
+            System.Console.WriteLine("Now ponder on each of the following questions as they reçated to this experince.");
+            System.Console.Write("You may begin in: ");
+            ShowCountDown(5);
+            Console.Clear();
+
+            DateTime startTime = DateTime.Now;
+            DateTime endTime = startTime.AddSeconds(_duration);
+
+            while (DateTime.Now <= endTime)
+            {
+                DisplayQuestion();
+                ShowSpiner(4);
+            }
+            DisplayEndingMessage();
+
+        }
+        catch (System.Exception)
+        {
+            System.Console.WriteLine();
+            Console.WriteLine("Please, insert a valid number");
+            System.Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
+            Run();
+        }
+
+    }
     public string GetRandomPrompt()
     {
-        return "";
+        Random random = new Random();
+        int randomIndex = random.Next(_prompts.Count);
+        string randomPrompt = _prompts[randomIndex];
+        return randomPrompt;
     }
     public string GetRandomQuestion()
     {
-        return "";
+        Random random = new Random();
+        int randomIndex = random.Next(_questions.Count);
+        string randomQuestion = _questions[randomIndex];
+        return randomQuestion;
     }
-    public void DisplayPrompt() { }
-    public void DisplayQuestion() { }
+    public void DisplayPrompt()
+    {
+        string prompt = GetRandomPrompt();
+        string input = "";
+        System.Console.WriteLine("Consider the following prompt:");
+        System.Console.WriteLine();
+        System.Console.WriteLine($"--- {prompt} ---");
+        System.Console.WriteLine();
+        System.Console.WriteLine("When you have something in mind, press enter to continue.");
+        input = Console.ReadLine();
+
+        while (!string.IsNullOrEmpty(input))
+        {
+            Console.WriteLine("Invalid input. Please press Enter to continue.");
+            input = Console.ReadLine();
+        }
+
+    }
+    public void DisplayQuestion()
+    {
+        string question = GetRandomQuestion();
+        System.Console.WriteLine();
+        System.Console.WriteLine(question);
+    }
 }

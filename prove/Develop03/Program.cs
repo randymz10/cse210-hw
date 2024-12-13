@@ -27,7 +27,7 @@ class Program
             
             if (!string.IsNullOrEmpty(input))
             {
-                Console.WriteLine("Invalid input. Please press Enter to continue or typee 'quit' to exitt.");
+                Console.WriteLine("Invalid input. Please press Enter to continue or type 'quit' to exitt.");
             }
 
         }

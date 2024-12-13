@@ -14,7 +14,7 @@ class BreathingActivity : Activity
             _duration = int.Parse(Console.ReadLine());
             Console.Clear();
             Console.WriteLine("Get ready");
-            ShowSpiner(3);
+            ShowSpiner(4);
             Console.WriteLine();
 
             DateTime startTime = DateTime.Now;
@@ -35,7 +35,10 @@ class BreathingActivity : Activity
         }
         catch (System.Exception)
         {
+            System.Console.WriteLine();
             Console.WriteLine("Please, insert a valid number");
+            System.Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
         }
     }
 }
