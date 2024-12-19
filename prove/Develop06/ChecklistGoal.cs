@@ -7,22 +7,20 @@ class ChecklistGoal : Goal
     {
         _target = target;
         _bonus = bonus;
+        _amountCompleted = 0;
     }
 
-    public override void RecordEvent()
-    {
-        base.RecordEvent();
-    }
+    public override void RecordEvent() { }
     public override bool IsComplete()
     {
-        return base.IsComplete();
+        return false;
     }
     public override string GetDetailsString()
     {
-        return base.GetDetailsString();
+        return $"[] {_shortName} ({_description})";
     }
     public override string GetStringRepresentation()
     {
-        return base.GetStringRepresentation();
+        return "";
     }
 }

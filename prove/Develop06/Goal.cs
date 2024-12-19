@@ -1,8 +1,8 @@
-class Goal
+abstract class Goal
 {
-    private string _shortName;
-    private string _description;
-    private string _points;
+    protected string _shortName;
+    protected string _description;
+    protected string _points;
 
     public Goal(string name, string description, string points)
     {
@@ -10,19 +10,20 @@ class Goal
         _description = description;
         _points = points;
     }
-
-    public virtual void RecordEvent() { }
-    public virtual bool IsComplete()
+    public string ShortName
     {
-        return true;
+        get { return _shortName; }
     }
-
+    public abstract void RecordEvent();
+    public abstract bool IsComplete();
     public virtual string GetDetailsString()
     {
-        return "";
+        string checkbox = "[]";
+        if (IsComplete())
+        {
+            checkbox = "[X]";
+        }
+        return $"{checkbox} {_shortName} ({_description})";
     }
-    public virtual string GetStringRepresentation()
-    {
-        return "";
-    }
+    public abstract string GetStringRepresentation();
 }
