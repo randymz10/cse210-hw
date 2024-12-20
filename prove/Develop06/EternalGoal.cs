@@ -1,20 +1,17 @@
 class EternalGoal : Goal
 {
     public EternalGoal(string name, string description, string points) : base(name, description, points) { }
-    public override void RecordEvent() { }
+    public override void RecordEvent()
+    {
+        System.Console.WriteLine("\nThis goal don't need to be completed\n");
+    }
     public override bool IsComplete()
     {
-        return true;
-
+        return false;
     }
-    public override string GetDetailsString()
-    {
-        return "";
-    }
-
     public override string GetStringRepresentation()
     {
-        return "";
+        return $"EternalGoal:{_shortName},{_description},{_points}";
     }
 
 }
